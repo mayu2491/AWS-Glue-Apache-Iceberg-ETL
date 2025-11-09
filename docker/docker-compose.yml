@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  hadoop-namenode:
+    image: bitnami/hadoop:3.3.5
+    container_name: health-hadoop-namenode
+    environment:
+      - HADOOP_MODE=namenode
+      - HADOOP_NAMENODE_HOSTNAME=hadoop-namenode
+      - HDFS_NAMENODE_HOSTNAME=hadoop-namenode
+      - HADOOP_CONF_fs_defaultFS=hdfs://hadoop-namenode:8020
+    ports:
+      - "9870:9870"
+    volumes:
+      - hadoop_namenode:/bitnami
+
+  hadoop-datanode:
+    image: bitnami/hadoop:3.3.5
+    container_name: health-hadoop-datanode
+    environment:
+      - HADOOP_MODE=datanode
+      - HADOOP_NAMENODE_HOSTNAME=hadoop-namenode
+      - HDFS_NAMENODE_HOSTNAME=hadoop-namenode
+      - HADOOP_CONF_fs_defaultFS=hdfs://hadoop-namenode:8020
+    depends_on:
+      - hadoop-namenode
+    ports:
+      - "9864:9864"
+    volumes:
+      - hadoop_datanode:/bitnami
+
+  spark:
+    image: tabulario/spark-iceberg:0.14.0
+    container_name: health-spark
+    depends_on:
+      - hadoop-namenode
+      - hadoop-datanode
+    environment:
+      - SPARK_LOCAL_IP=health-spark
+      - HADOOP_CONF_fs_defaultFS=hdfs://hadoop-namenode:8020
+      - AWS_REGION=us-east-1
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+    entrypoint: ["/bin/bash", "-c", "tail -f /dev/null"]
+
+volumes:
+  hadoop_namenode:
+  hadoop_datanode:

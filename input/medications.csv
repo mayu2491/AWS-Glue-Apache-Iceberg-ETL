@@ -1,0 +1,4 @@
+medication_order_id,patient_id,med_id,med_name,dose,route,ordered_at,updated_at
+M-5001,P-100,NDC-0001,Lisinopril,10 mg,Oral,2023-01-02T09:00:00,2023-01-02T09:05:00
+M-5002,P-101,NDC-0002,Metformin,500 mg,Oral,2023-01-07T11:00:00,2023-01-07T11:15:00
+M-5003,P-102,,Albuterol Inhaler,2 puffs,Inhalation,2023-02-12T09:30:00,2023-02-12T09:35:00
