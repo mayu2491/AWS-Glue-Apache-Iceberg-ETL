@@ -1,0 +1,4 @@
+encounter_id,patient_id,admit_at,discharge_at,provider,diagnosis,updated_at
+E-1001,P-100,2023-01-02T08:30:00,2023-01-05T11:00:00,General Hospital,Hypertension,2023-01-05T12:00:00
+E-1002,P-101,2023-01-07T10:45:00,2023-01-10T09:00:00,City Clinic,Diabetes Type 2,2023-01-10T09:30:00
+E-1003,P-102,2023-02-12T09:15:00,2023-02-13T14:20:00,Lakeview Center,Asthma,2023-02-13T15:00:00
