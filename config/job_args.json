@@ -1,0 +1,56 @@
+{
+  "ingest_encounters": {
+    "local": {
+      "catalog": "health",
+      "database": "healthcare",
+      "table": "encounters",
+      "warehouse_path": "./warehouse",
+      "source_path": "input/encounters.csv"
+    },
+    "cloud": {
+      "catalog": "health",
+      "database": "healthcare",
+      "table": "encounters",
+      "warehouse_path": "s3://demo-bucket/warehouse",
+      "source_path": "s3://demo-bucket/input/encounters/"
+    }
+  },
+  "ingest_medications": {
+    "local": {
+      "catalog": "health",
+      "database": "healthcare",
+      "table": "medications",
+      "warehouse_path": "./warehouse",
+      "source_path": "input/medications.csv"
+    },
+    "cloud": {
+      "catalog": "health",
+      "database": "healthcare",
+      "table": "medications",
+      "warehouse_path": "s3://demo-bucket/warehouse",
+      "source_path": "s3://demo-bucket/input/medications/"
+    }
+  },
+  "compact": {
+    "local": {
+      "catalog": "health",
+      "database": "healthcare",
+      "table": "encounters",
+      "warehouse_path": "./warehouse",
+      "retain_hours": 24,
+      "rewrite_options": {
+        "target-file-size-bytes": "536870912"
+      }
+    },
+    "cloud": {
+      "catalog": "health",
+      "database": "healthcare",
+      "table": "encounters",
+      "warehouse_path": "s3://demo-bucket/warehouse",
+      "retain_hours": 24,
+      "rewrite_options": {
+        "target-file-size-bytes": "536870912"
+      }
+    }
+  }
+}
